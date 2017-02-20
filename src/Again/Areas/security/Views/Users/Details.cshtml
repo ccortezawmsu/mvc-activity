@@ -1,0 +1,65 @@
+﻿@model Again.Areas.security.Models.UserModel
+
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2> </h2>
+<header class=" row content-header">
+    <div class=" col-md-6">
+        <h2>Details</h2>
+    </div>
+    <div class=" col-md-6 content-action">
+        <br /><br />
+        <a href="@Url.Action("Index")" class="btn btn-success">
+            <span class="glyphicon glyphicon-arrow-left"></span>
+            Back to List
+        </a>
+        <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-info">
+            <span class="glyphicon glyphicon-pencil"></span>
+            Edit
+        </a>
+    </div>
+</header>
+
+<div>
+    
+    <dl class="dl-horizontal">
+        <dt>
+            First Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            Last Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            Age
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+
+        <dt>
+            Gender
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+
+    </dl>
+</div>
+
+

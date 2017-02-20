@@ -1,0 +1,84 @@
+﻿@model Again.Areas.security.Models.UserModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<a class="text-success">
+    <h2>Edit</h2>
+</a>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+   
+    <div class="form-horizontal">
+        <div class="form-horizontal">
+            <header class="row content-header head-margin">
+                <div class="col-md-6">
+                </div>
+
+                <div class="col-md-6 content-action text right">
+                    <a href="@Url.Action("Index")" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-remove"></span>Cancel
+                    </a>
+
+                    <button type="submit" value="Save" class="btn btn-success" />
+                    <span class="glyphicon glyphicon-ok"></span>Update
+                </div>
+            </header>
+            </div>
+        </div>
+            <hr />
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.FirstName, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FirstName)
+                    @Html.ValidationMessageFor(model => model.FirstName)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.LastName, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.LastName)
+                    @Html.ValidationMessageFor(model => model.LastName)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Age, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Age)
+                    @Html.ValidationMessageFor(model => model.Age)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Gender, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div>
+                        @Html.RadioButtonFor(model => model.Gender, "Male", false) Male
+                    </div>
+                    <div>
+                        @Html.RadioButtonFor(model => model.Gender, "Female", false) Female
+                    </div>
+                    <div>
+                        @Html.RadioButtonFor(model => model.Gender, "Others", false) Others
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Gender)
+                </div>
+            </div>
+
+            
+        
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
