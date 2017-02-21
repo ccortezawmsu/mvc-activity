@@ -60,9 +60,9 @@ namespace Again.Areas.security.Controllers
         // GET: /security/Users/Details/5
         public ActionResult Details(Guid id)
         {
-            var u = Users.FirstOrDefault(users => users.Id == id);
-            // Users.Contains(u);
-            return View(u);
+            
+         
+            return View(GetUser(id));
         }
 
         //
@@ -158,8 +158,7 @@ namespace Again.Areas.security.Controllers
         // GET: /security/Users/Delete/5
         public ActionResult Delete(Guid id)
         {
-            var u = Users.FirstOrDefault(users => users.Id == id);
-            return View(u);
+            return View(GetUser(id));
         }
 
         //
@@ -169,15 +168,39 @@ namespace Again.Areas.security.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
-                var u = Users.FirstOrDefault(user => user.Id == id);
-                Users.Remove(u);
-                return RedirectToAction("Index");
+                using (var db = new DataBaseContext())
+                {
+                  var users = db.Users.FirstOrDefault(user => user.Id == id);
+                    db.Users.Remove(users);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
             catch
             {
                 return View();
             }
+        }
+        private UserModel GetUser(Guid id)
+        {
+            using (var db = new DataBaseContext())
+            {
+                return (from user in db.Users
+                        where user.Id == id
+                        select new UserModel
+                        {
+                            Id = user.Id,
+                            FirstName = user.FirstName,
+                            LastName = user.LastName,
+                            Age = user.Age,
+                            Gender = user.Gender
+                        }).FirstOrDefault();
+
+                //db.Users.Select(u => new UserViewModel { 
+                //    Id = u.Id
+                //}).FirstOrDefault(x => x.Id == id);
+            }
+
         }
     }
 }
