@@ -118,6 +118,7 @@ namespace Again.Areas.security.Controllers
         // GET: /security/Users/Edit/5
         public ActionResult Edit(Guid id)
         {
+           
             var u = Users.FirstOrDefault(users => users.Id == id);
             return View(u);
         }
@@ -128,15 +129,23 @@ namespace Again.Areas.security.Controllers
         public ActionResult Edit(Guid id, UserModel Usersmodel)
         {
             try
-            {
-                // TODO: Add update logic here
-                var u = Users.FirstOrDefault(user => user.Id == id);
+            {                // TODO: Add update logic here
 
-                u.FirstName = Usersmodel.FirstName;
-                u.LastName = Usersmodel.LastName;
-                u.Age = Usersmodel.Age;
-                u.Gender = Usersmodel.Gender;
+                if (ModelState.IsValid == false)
+                    return View();
 
+                 using (var db = new DataBaseContext())
+                 {
+                var user = db.Users.FirstOrDefault (u => u.Id == id);
+                     {
+                    user.FirstName = Usersmodel.FirstName;
+                    user.LastName = Usersmodel.LastName;
+                    user.Age = Usersmodel.Age;
+                    user.Gender = Usersmodel.Gender;
+          
+                     db.SaveChanges();
+                    };
+                 }
                 return RedirectToAction("Index");
             }
             catch
