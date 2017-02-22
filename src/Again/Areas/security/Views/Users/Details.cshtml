@@ -25,47 +25,26 @@
 
 <div>
     
-    <dl class="dl-horizontal">
+    <div class="dl-horizontal">
 
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
+        <img src="@Url.Content("~/Images/Unknown.jpg")" class="img-rounded resize" />
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Age)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Age)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Gender)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Gender)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EmploymentDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EmploymentDate)
-        </dd>
-    </dl>
+        <br>
+        <h3>@Html.DisplayFor(model => model.LastName)</h3>
+        <br />
+        @Html.DisplayFor(model => model.FirstName)
+        <br>
+        <br />
+        @Html.DisplayFor(model => model.Age) years old
+        <br>
+        <br />
+        @Html.DisplayFor(model => model.Gender)
+        <br>
+        <br />
+        @Html.DisplayFor(model => model.EmploymentDate)
+    </div>
 </div>
 
 

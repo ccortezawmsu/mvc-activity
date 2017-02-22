@@ -25,11 +25,10 @@
             <div class="panel-body">
                 <img src="@Url.Content("~/Images/Unknown.jpg")" class="img-rounded resize" />
 
-                <p class="text">
-                    <b>
-                        @Html.DisplayFor(model => model.LastName)
-                    </b>
-                </p>
+                
+                <br>
+                <h3>@Html.DisplayFor(model => model.LastName)</h3>
+                <br />                
                 @Html.DisplayFor(model => model.FirstName)
                 <br><br /> 
                 @Html.DisplayFor(model => model.Age) years old
