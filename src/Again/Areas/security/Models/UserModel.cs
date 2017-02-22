@@ -8,7 +8,7 @@ namespace Again.Areas.security.Models
 {
     public class UserModel
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         [Required, Display(Name = "FIRST NAME")]
         [MinLength(2, ErrorMessage = "Minimum of 2 Characters")]
@@ -24,5 +24,7 @@ namespace Again.Areas.security.Models
         public int? Age { get; set; }
 
         public string Gender { get; set; }
+
+        public DateTime? EmploymentDate { get; set; }
     }
 }

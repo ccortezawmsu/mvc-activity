@@ -10,34 +10,7 @@ namespace Again.Areas.security.Controllers
 {
     public class UsersController : Controller
     {
-        private IList<UserModel>Users
-        { 
-            get
-            {
-                   if (Session["data"]==null)
-                   {
-                       Session["data"] = new List<UserModel>(){
-                           new UserModel {
-                            Id = Guid.NewGuid(),
-                            FirstName = "Christian",
-                            LastName = "Corteza",
-                            Age = 21 ,
-                            Gender =  "Male"
-                        },
-                    new UserModel {
-                        Id = Guid.NewGuid(),
-                        FirstName = "Lorem",
-                        LastName = "Ipsum",
-                        Age = 19 ,
-                        Gender = "Female"
-
-                       }
-                    };
-                   }
-                   return Session["data"] as List<UserModel>;
-
-            }
-        }
+       
         //
         // GET: /security/Users/
         public ActionResult Index()
@@ -51,17 +24,16 @@ namespace Again.Areas.security.Controllers
                                  FirstName = user.FirstName,
                                  LastName = user.LastName,
                                  Age = user.Age,
-                                 Gender = user.Gender
+                                 Gender = user.Gender,
+                                 EmploymentDate = user.EmploymentDate
                              }).ToList();
               return View(Users);
             }
         }
         //
         // GET: /security/Users/Details/5
-        public ActionResult Details(Guid id)
+        public ActionResult Details(int id)
         {
-            
-         
             return View(GetUser(id));
         }
 
@@ -97,12 +69,12 @@ namespace Again.Areas.security.Controllers
              {
                  db.Users.Add(new User
                  {
-                     Id = Guid.NewGuid(),
+                     //Id = UserModel.Id,
                      FirstName = Usersmodel.FirstName,
                      LastName = Usersmodel.LastName,
                      Age = Usersmodel.Age,
-                     Gender = Usersmodel.Gender
-
+                     Gender = Usersmodel.Gender,
+                     EmploymentDate= Usersmodel.EmploymentDate
                  });
                  db.SaveChanges();
              }
@@ -116,17 +88,16 @@ namespace Again.Areas.security.Controllers
 
         //
         // GET: /security/Users/Edit/5
-        public ActionResult Edit(Guid id)
+        public ActionResult Edit(int id)
         {
-           
-            var u = Users.FirstOrDefault(users => users.Id == id);
-            return View(u);
+
+            return View(GetUser(id));
         }
 
         //
         // POST: /security/Users/Edit/5
         [HttpPost]
-        public ActionResult Edit(Guid id, UserModel Usersmodel)
+        public ActionResult Edit(int id, UserModel Usersmodel)
         {
             try
             {                // TODO: Add update logic here
@@ -156,7 +127,7 @@ namespace Again.Areas.security.Controllers
 
         //
         // GET: /security/Users/Delete/5
-        public ActionResult Delete(Guid id)
+        public ActionResult Delete(int id)
         {
             return View(GetUser(id));
         }
@@ -164,13 +135,13 @@ namespace Again.Areas.security.Controllers
         //
         // POST: /security/Users/Delete/5
         [HttpPost]
-        public ActionResult Delete(Guid id, FormCollection collection)
+        public ActionResult Delete(int id, FormCollection collection)
         {
             try
             {
                 using (var db = new DataBaseContext())
                 {
-                  var users = db.Users.FirstOrDefault(user => user.Id == id);
+                  var users = db.Users.FirstOrDefault(u => u.Id == id);
                     db.Users.Remove(users);
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -181,7 +152,7 @@ namespace Again.Areas.security.Controllers
                 return View();
             }
         }
-        private UserModel GetUser(Guid id)
+        private UserModel GetUser(int id)
         {
             using (var db = new DataBaseContext())
             {
@@ -193,12 +164,11 @@ namespace Again.Areas.security.Controllers
                             FirstName = user.FirstName,
                             LastName = user.LastName,
                             Age = user.Age,
-                            Gender = user.Gender
+                            Gender = user.Gender,
+                            EmploymentDate = user.EmploymentDate
                         }).FirstOrDefault();
 
-                //db.Users.Select(u => new UserViewModel { 
-                //    Id = u.Id
-                //}).FirstOrDefault(x => x.Id == id);
+                
             }
 
         }
