@@ -2,6 +2,7 @@
 using Again.Dal;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -67,24 +68,53 @@ namespace Again.Areas.security.Controllers
                     return View();
              using (var db = new DataBaseContext())
              {
-                 db.Users.Add(new User
-                 {
+                 //db.Users.Add(new User
+                 //{
+                     var sql = @"exec uspCreateUser @guid,
+                    @fname,
+                    @lname,
+                    @age,
+                    @gender,
+                    @empDate,
+                    @school,
+                    @yrAttended";
+
+                    var result = db.Database.ExecuteSqlCommand(sql,
+                        new SqlParameter ("@guid" , Guid.NewGuid()),
+                        new SqlParameter ("@fname" , Usersmodel.FirstName),
+                        new SqlParameter ("@lname" , Usersmodel.LastName),
+                        new SqlParameter ("@age" , Usersmodel.Age),
+                        new SqlParameter ("@gender" , Usersmodel.Gender),
+                        new SqlParameter ("@empDate" , DateTime.UtcNow),
+                        new SqlParameter ("@school" , "WMSU"),
+                        new SqlParameter ("@yrAttended" , "2002"));
+
+                 if (result > 1)
+                     return RedirectToAction("Index");
+                 else
+                     return View();
+
+
                      //Id = UserModel.Id,
-                     FirstName = Usersmodel.FirstName,
-                     LastName = Usersmodel.LastName,
-                     Age = Usersmodel.Age,
-                     Gender = Usersmodel.Gender,
-                     EmploymentDate= Usersmodel.EmploymentDate
-                 });
-                 db.SaveChanges();
+                     //FirstName = Usersmodel.FirstName,
+                     //LastName = Usersmodel.LastName,
+                     //Age = Usersmodel.Age,
+                     //Gender = Usersmodel.Gender,
+                     //EmploymentDate= Usersmodel.EmploymentDate
+               //  });
+                 //db.SaveChanges();
+            // }
+             //   return RedirectToAction("Index");
+            //}
              }
-                return RedirectToAction("Index");
             }
             catch
             {
                 return View();
             }
         }
+        
+        
 
         //
         // GET: /security/Users/Edit/5
