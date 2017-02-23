@@ -27,6 +27,14 @@ namespace Again.Areas.security.Models
 
         public DateTime? EmploymentDate { get; set; }
 
+        public IList<EducationViewModel> Educations { get; set; }
+
+
+        ////public int Id { get; set; }
+        //public int UserId { get; set; }
+        //public string School { get; set; }
+        //public string YearAttended { get; set; }
+
 
 
 

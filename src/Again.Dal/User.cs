@@ -23,5 +23,7 @@ namespace Again.Dal
         public DateTime? EmploymentDate { get; set; }
     
         public ICollection<Education> Educations {get; set;}
+        public Guid Guid { get; set; }
     }
+
 }
