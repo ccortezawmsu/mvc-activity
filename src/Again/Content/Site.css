@@ -53,3 +53,6 @@ tr:nth-child(even)
     margin-right: 15px; 
 }
 
+th{
+    background-color:#00a1ff;
+}

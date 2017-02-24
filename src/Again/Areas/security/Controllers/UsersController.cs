@@ -76,16 +76,17 @@ namespace Again.Areas.security.Controllers
                      FirstName = Usersmodel.FirstName,
                      LastName = Usersmodel.LastName,
                      Age = Usersmodel.Age,
-                     Gender = Usersmodel.Gender
+                     Gender = Usersmodel.Gender,
+                     EmploymentDate= Usersmodel.EmploymentDate
 
                  };
 
 
                  //newUser.Educations.Add(new Education
-                 //    {
-                 //        School = "WMSU",
-                 //        YearAttended = "2001"
-                 //    });
+                  //   {
+                     //    School = s.School,
+                    //     YearAttended =
+                   //  });
 
 
                  db.Users.Add(newUser);

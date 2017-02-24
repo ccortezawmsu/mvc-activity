@@ -188,6 +188,7 @@
     <Content Include="Areas\security\Views\Users\Edit.cshtml" />
     <Content Include="Areas\security\Views\Users\Delete.cshtml" />
     <Content Include="Areas\security\Views\Users\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\release.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

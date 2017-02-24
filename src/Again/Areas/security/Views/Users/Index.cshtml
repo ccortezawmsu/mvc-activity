@@ -20,8 +20,8 @@
 </p>
 <table class="table">
     <tr>
-
         <th>SN</th>
+        <th></th>       
         <th>Name</th>
         <th>
             @Html.DisplayNameFor(model => model.Age)
@@ -36,15 +36,22 @@
         <th>
 
 
-          
+
         </th>
-     </tr>
+    </tr>
 
     @{var x = 1;}
 @foreach (var item in Model) {
     <tr>
         <td>
-            @x
+            @(x++)
+        </td>
+        <td>
+        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">
+            <span class="glyphicon glyphicon-plus" ></span></button>
+            <div id="demo" class="collapse">
+                <h5>WMSU , 1991</h5>
+            </div>
         </td>
         <td>
 
